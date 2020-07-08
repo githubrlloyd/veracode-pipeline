@@ -1,5 +1,5 @@
-# `code-scanning-playground`
-> :wave: :earth_americas: a playground for **Code Scanning** :roller_coaster:
+# `veracode-pipeline`
+> an example of a GitHub action for initiating a Veracode pipeline scan and returning the results.json as code scanning alerts in GitHub's Security tab
 
 ## Contents
 - [About](#about)
@@ -8,24 +8,18 @@
 - [Additional resources](#additional-resources)
 
 ## About
-This is a template repo, demonstrating GitHub's [Code Scanning capability](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning), using ESLint to generate a "code scanning alert" in GitHub's Security tab:
-
-![example](images/example.png)
+This is an example
 
 ## How it works
-- The ESLint analysis workflow [runs on a schedule, and on every `push`](https://github.com/swinton/code-scanning-playground/blob/20366008d4376dd1899559fba0bf5fbbece109c3/.github/workflows/upload-sarif.yml#L3-L8)
-- The ESLint output is [formatted as SARIF](https://github.com/swinton/code-scanning-playground/blob/20366008d4376dd1899559fba0bf5fbbece109c3/.github/workflows/upload-sarif.yml#L18-L20), using the [`@microsoft/eslint-formatter-sarif`](https://github.com/microsoft/sarif-sdk/tree/master/src/ESLint.Formatter#readme) package
+- The Veracode pipeline scan analysis workflow runs on commit, takes the artifact from your build and submits it to the Veracode pipeline scan service
+- The results.json ouput is transformed into SARIF
 - The SARIF report is submitted to GitHub via the [`github/codeql-action/upload-sarif`](https://github.com/github/codeql-action/tree/main/upload-sarif) action
 
 ## Getting started
-1. Register for the code scanning beta [here](https://github.com/features/security/advanced-security/signup)
-1. [Generate a copy of this repo](https://github.com/swinton/code-scanning-playground/generate)
-1. Push a commit -- it can even be an empty commit (`git commit --allow-empty`)
-1. Observe as a new security alert is generated
+1. Setup an API users for your Veracode account
+2. Implement this action
+3. Push a commit
+4. Observe any results being represented as a security alert
 
 ## Additional resources
-- [SARIF example output](example.sarif.json)
-- [`microsoft/sarif-tutorials`](https://github.com/microsoft/sarif-tutorials): User-friendly documentation for the SARIF file format
-- [SARIF support for code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/sarif-support-for-code-scanning)
-- [Example workflow that runs the ESLint analysis tool](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/uploading-a-sarif-file-to-github#example-workflow-that-runs-the-eslint-analysis-tool)
-- REST API: https://docs.github.com/en/rest/reference/code-scanning
+- ..
